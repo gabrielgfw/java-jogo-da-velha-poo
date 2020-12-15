@@ -1,4 +1,4 @@
-package JogoDaVelha.config.commands.keyboard.checker;
+package JogoDaVelha.config.commands.keyboard.validator;
 
 public class InputChecker {
 
@@ -14,4 +14,5 @@ public class InputChecker {
             return move;
         return 0;
     }
+
 }

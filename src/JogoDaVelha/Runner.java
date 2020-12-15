@@ -1,12 +1,12 @@
 package JogoDaVelha;
 
-import JogoDaVelha.config.main.MainFunctions;
+import JogoDaVelha.config.main.GameController;
 
 public class Runner {
 
     public static void main(String[] args) {
 
-        MainFunctions game = new MainFunctions();
+        GameController game = new GameController();
         game.runGame();
 
     }

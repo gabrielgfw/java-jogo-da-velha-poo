@@ -1,6 +1,6 @@
 package JogoDaVelha.config.commands.keyboard.reader;
 
-import JogoDaVelha.config.commands.keyboard.checker.InputChecker;
+import JogoDaVelha.config.commands.keyboard.validator.InputChecker;
 import java.util.Scanner;
 
 

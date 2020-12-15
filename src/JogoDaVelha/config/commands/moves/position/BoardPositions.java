@@ -1,4 +1,4 @@
-package JogoDaVelha.config.enums;
+package JogoDaVelha.config.commands.moves.position;
 
 public enum BoardPositions {
     POSITION_INVALID(-1,-1),

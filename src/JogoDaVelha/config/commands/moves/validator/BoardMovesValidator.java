@@ -1,87 +1,66 @@
-package JogoDaVelha.config.board;
+package JogoDaVelha.config.commands.moves.validator;
 
-import JogoDaVelha.config.enums.BoardPositions;
-import JogoDaVelha.config.enums.CurrentGameState;
+import JogoDaVelha.config.commands.moves.position.BoardPositions;
+import JogoDaVelha.config.gameboard.board.GameBoard;
+import JogoDaVelha.config.main.status.GameStatus;
+import JogoDaVelha.config.player.Players;
 
-public class GameBoard {
+public class BoardMovesValidator {
 
+    GameBoard board = new GameBoard();
     private BoardPositions positionPlayed;
-    private CurrentGameState response;
-    private char[][] gameBoard =
-     {{' ', '|', ' ', '|', ' '},
-      {'-', '+', '-', '+', '-'},
-      {' ', '|', ' ', '|', ' '},
-      {'-', '+', '-', '+', '-'},
-      {' ', '|', ' ', '|', ' '}};
 
 
-    public char[][] getGameBoard() {
-        return gameBoard;
-    }
-
-    public void resetGameBoard() {
-        for (int i = 4; i >= 0; i--) {
-            if (i % 2 == 0) {
-                for (int j = 0; j <= 4; j++) {
-                    if (j % 2 == 0)
-                        this.gameBoard[i][j] = ' ';
-                }
-            }
-        }
-        response = CurrentGameState.NEW_GAME;
-    }
-
-    public void setMove(int position, char player) {
+    public GameStatus setMove(int position, char player) {
         positionPlayed = findCorrectPosition(position);
 
         if(position == 0 || !isPositionEmpty(positionPlayed) || !isPositionValid(positionPlayed)) {
-            response = CurrentGameState.ERROR;
+            return GameStatus.ERROR;
         } else {
-            gameBoard[positionPlayed.getPosX()][positionPlayed.getPosY()] = player;
-            response = CurrentGameState.VALID;
+            board.updatePositionInBoard(positionPlayed, player);
+            if(hasAWinner())
+                return GameStatus.WIN;
+            return GameStatus.VALID;
         }
-        if(hasAWinner())
-            response = CurrentGameState.WIN;
-    }
 
-    public CurrentGameState getCurrentGameState() {
-        return response;
-    }
-
-    private char getBoardCoordinates(BoardPositions position) {
-        return gameBoard[position.getPosX()][position.getPosY()];
     }
 
     private boolean isPositionEmpty(BoardPositions position) {
         char empty = ' ';
 
-        if(getBoardCoordinates(position) == empty)
+        if(board.getSpecificPositionValue(position) == empty) {
+            System.out.println("isPositionEmpty = true");
             return true;
-        return false;
+        } else {
+            System.out.println("VALOR: " + board.getSpecificPositionValue(position));
+            System.out.println("isPositionEmpty = false");
+            return false;
+        }
     }
 
     private boolean isPositionValid(BoardPositions position) {
-        char x = 'X';
-        char o = 'O';
+        char positionValue = board.getSpecificPositionValue(position);
 
-        if(gameBoard[positionPlayed.getPosX()][positionPlayed.getPosY()] == x)
+        if(positionValue == Players.PLAYER_X.getPlayer() || positionValue == Players.PLAYER_O.getPlayer()) {
+            System.out.println("isPositionValid = false");
             return false;
-        if(gameBoard[positionPlayed.getPosX()][positionPlayed.getPosY()] == o)
-            return false;
-        return true;
+        } else {
+            System.out.println("isPositionValid = true");
+            return true;
+        }
     }
 
     private boolean hasAWinner() {
         // refer to all possible positions.
-        char pos01 = getBoardCoordinates(BoardPositions.POSITION_01);
-        char pos02 = getBoardCoordinates(BoardPositions.POSITION_02);
-        char pos03 = getBoardCoordinates(BoardPositions.POSITION_03);
-        char pos04 = getBoardCoordinates(BoardPositions.POSITION_04);
-        char pos05 = getBoardCoordinates(BoardPositions.POSITION_05);
-        char pos06 = getBoardCoordinates(BoardPositions.POSITION_06);
-        char pos07 = getBoardCoordinates(BoardPositions.POSITION_07);
-        char pos08 = getBoardCoordinates(BoardPositions.POSITION_08);
-        char pos09 = getBoardCoordinates(BoardPositions.POSITION_09);
+        char pos01 = board.getSpecificPositionValue(BoardPositions.POSITION_01);
+        char pos02 = board.getSpecificPositionValue(BoardPositions.POSITION_02);
+        char pos03 = board.getSpecificPositionValue(BoardPositions.POSITION_03);
+        char pos04 = board.getSpecificPositionValue(BoardPositions.POSITION_04);
+        char pos05 = board.getSpecificPositionValue(BoardPositions.POSITION_05);
+        char pos06 = board.getSpecificPositionValue(BoardPositions.POSITION_06);
+        char pos07 = board.getSpecificPositionValue(BoardPositions.POSITION_07);
+        char pos08 = board.getSpecificPositionValue(BoardPositions.POSITION_08);
+        char pos09 = board.getSpecificPositionValue(BoardPositions.POSITION_09);
         // checking all positions content.
         boolean pos01Empty = isPositionEmpty(BoardPositions.POSITION_01);
         boolean pos02Empty = isPositionEmpty(BoardPositions.POSITION_02);
