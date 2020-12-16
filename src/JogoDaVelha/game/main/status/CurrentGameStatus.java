@@ -1,12 +1,8 @@
-package JogoDaVelha.config.main.status;
+package jogodavelha.game.main.status;
 
 public class CurrentGameStatus {
 
     private GameStatus status;
-
-    public CurrentGameStatus(GameStatus status) {
-        this.status = status;
-    }
 
     public GameStatus getStatus() {
         return status;
@@ -15,4 +11,5 @@ public class CurrentGameStatus {
     public void setStatus(GameStatus status) {
         this.status = status;
     }
+
 }

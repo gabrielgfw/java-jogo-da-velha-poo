@@ -1,6 +1,6 @@
-package JogoDaVelha;
+package jogodavelha;
 
-import JogoDaVelha.config.main.GameController;
+import jogodavelha.game.main.GameController;
 
 public class Runner {
 

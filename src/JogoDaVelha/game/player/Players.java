@@ -1,4 +1,4 @@
-package JogoDaVelha.config.player;
+package jogodavelha.game.player;
 
 public enum Players {
     PLAYER_X('X'),
