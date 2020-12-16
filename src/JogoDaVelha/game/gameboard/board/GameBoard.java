@@ -1,11 +1,10 @@
 package jogodavelha.game.gameboard.board;
 
-
-import jogodavelha.game.player.CurrentPlayer;
-
 public class GameBoard {
 
-    CurrentPlayer player = new CurrentPlayer();
+    public GameBoard() {
+        this.resetGameBoard();
+    }
 
     private char gameBoard[][] = new char[5][5];
 

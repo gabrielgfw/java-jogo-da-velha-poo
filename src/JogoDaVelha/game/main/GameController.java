@@ -24,12 +24,11 @@ public class GameController {
     private int totalMovesMade;
 
     public void runGame() {
+        resetData();
         startGameLoop();
     }
 
     private void startGameLoop() {
-        gameBoard.resetGameBoard();
-        resetData();
 
         while(totalMovesMade <= MAX_MOVES || !winner) {
             try {
@@ -67,12 +66,12 @@ public class GameController {
     private void winGame() {
         winner = true;
         textPrinter.printWinner(currentPlayer.getCurrentPlayer(totalMovesMade));
-        boardPrinter.printGameBoard();
+        boardPrinter.printGameBoard(gameBoard);
     }
 
     private void callNextMove() {
         textPrinter.printCallNextMove(currentPlayer.getCurrentPlayer(totalMovesMade));
-        boardPrinter.printGameBoard();
+        boardPrinter.printGameBoard(gameBoard);
         status.setStatus(movesValidator.setMove(keyboardReader.readMove(), currentPlayer.getCurrentPlayer(totalMovesMade)));
     }
 

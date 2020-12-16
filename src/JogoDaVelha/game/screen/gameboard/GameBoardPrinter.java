@@ -4,9 +4,7 @@ import jogodavelha.game.gameboard.board.GameBoard;
 
 public class GameBoardPrinter {
 
-    GameBoard board = new GameBoard();
-
-    public void printGameBoard() {
+    public void printGameBoard(GameBoard board) {
 
         for(int i = 0; i <= 4 ; i++) {
             System.out.print("            ");

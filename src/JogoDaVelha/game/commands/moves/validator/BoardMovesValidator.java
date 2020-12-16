@@ -30,7 +30,7 @@ public class BoardMovesValidator {
     }
 
     private boolean isPositionEmpty(BoardPositions position) {
-        return board.getSpecificPositionValue(position.getPosX(), position.getPosY()) == Character.MIN_VALUE;
+        return board.getSpecificPositionValue(position.getPosX(), position.getPosY()) == ' ';
     }
 
     private boolean isPositionValid(BoardPositions position) {
