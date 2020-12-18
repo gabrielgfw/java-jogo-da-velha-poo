@@ -1,4 +1,4 @@
-package JogoDaVelha.config.main.status;
+package jogodavelha.game.main.status;
 
 public enum GameStatus {
     VALID,

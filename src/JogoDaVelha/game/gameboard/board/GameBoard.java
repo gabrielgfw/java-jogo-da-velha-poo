@@ -1,19 +1,19 @@
-package JogoDaVelha.config.gameboard.board;
-
-import JogoDaVelha.config.commands.moves.position.BoardPositions;
+package jogodavelha.game.gameboard.board;
 
 public class GameBoard {
 
-    private char[][] gameBoard = new char[5][5];
-
-    public char[][] getGameBoard() {
-        return gameBoard;
+    public GameBoard() {
+        this.resetGameBoard();
     }
 
-    public char getSpecificPositionValue(BoardPositions position) {
-        char result = gameBoard[position.getPosX()][position.getPosY()];
+    private char gameBoard[][] = new char[5][5];
 
-        return result;
+    public char[][] getGameBoard() {
+        return gameBoard.clone();
+    }
+
+    public char getSpecificPositionValue(int posX, int posY) {
+        return gameBoard[posX][posY];
     }
 
     public void resetGameBoard() {
@@ -38,7 +38,7 @@ public class GameBoard {
         }
     }
 
-    public void updatePositionInBoard(BoardPositions pos, char player) {
-        gameBoard[pos.getPosX()][pos.getPosY()] = player;
+    public void updatePositionInBoard(int posX, int posY, char player) {
+        this.gameBoard[posX][posY] = player;
     }
 }

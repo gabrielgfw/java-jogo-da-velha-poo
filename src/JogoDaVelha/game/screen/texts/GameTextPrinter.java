@@ -1,4 +1,4 @@
-package JogoDaVelha.config.screen.texts;
+package jogodavelha.game.screen.texts;
 
 public class GameTextPrinter {
 
